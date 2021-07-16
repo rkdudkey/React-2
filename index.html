@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16.0.0-rc.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0-rc.2/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <title>React</title>
+
+    <style>
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        .mountNode>div {
+            border: 1px solid #ccc;
+            margin: 1em;
+            padding: 1em;
+        }
+
+        .mountNode input {
+            display: block;
+            margin: 1rem 0;
+        }
+
+        .mountNode pre {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="mountNode" class="mountNode"></div>
+    <div id="mountNode2" class="mountNode"></div>
+
+    <script type="text/javascript">
+
+        const render = () => {
+            document.getElementById('mountNode').innerHTML = `
+	<div>
+    Hello HTML
+    <input />
+    <pre>${new Date().toLocaleTimeString()}</pre>
+  </div>
+`;
+            //ReactDOM.render :the entry point for a React application into the browser’s DOM
+            ReactDOM.render(
+                //in React we represent DOM elements with objects using calls to the React.createElement method.
+                React.createElement('div', null, 'Hello React',
+                    React.createElement("input"),
+                    React.createElement(
+                        'pre',
+                        null,
+                        new Date().toLocaleTimeString()
+                    )
+                ),
+
+                document.getElementById('mountNode2'),
+            );
+
+
+        };
+        setInterval(render, 1000);
+
+
+
+
+
+// 	currentTime: new Date().toLocaleTimeString()
+
+    </script>
+</body>
+
+</html>
